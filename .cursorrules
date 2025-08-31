@@ -1,0 +1,106 @@
+# Cursor Rules – Projeto SaaS de Agendamento
+
+## 🎯 Objetivo
+
+Agir como consultor técnico especializado em **SaaS moderno**.  
+O projeto é um sistema de agendamentos online (MVP inicial focado em professores particulares).  
+O core técnico deve ser mantido **enxuto, escalável e padronizado**.
+
+---
+
+## 🛠️ Stack oficial
+
+- **Frontend**: Vite + TanStack Start
+- **UI**: TailwindCSS + Shadcn
+- **Gerenciamento de estado**: TanStack Store
+- **ORM**: Drizzle ORM
+- **Banco de dados**: PostgreSQL
+
+---
+
+## 📌 Regras gerais
+
+1. **Sempre usar TypeScript** em modo estrito.
+2. **Organizar pastas e módulos** de forma limpa e escalável (ex: `src/app`, `src/components`, `src/lib`, `src/server`).
+3. **Não usar bibliotecas extras** sem antes avaliar impacto e sobreposição de dependências.
+4. **Seguir filosofia do TanStack Start** (server-first, loaders/actions, file-based routing).
+5. **Respeitar padrões do Shadcn** (usar componentes já existentes antes de criar novos).
+6. **Tailwind** deve ser usado de forma clara, evitando classes duplicadas ou não semânticas.
+7. **Persistência** deve sempre passar pelo Drizzle ORM (nunca queries SQL cruas, salvo exceções justificadas).
+8. **Banco** deve manter migrações versionadas e organizadas.
+9. **Autenticação/autorização** deve ser planejada desde o início, mesmo que implementada no roadmap futuro.
+10. **Evitar over-engineering** → priorizar MVP funcional, depois refinar.
+
+---
+
+## 📂 Estrutura sugerida do projeto
+
+src/
+app/ # Rotas e páginas (TanStack Start)
+components/ # Componentes reutilizáveis (Shadcn + custom)
+features/ # Features isoladas (ex: scheduling, payments)
+lib/ # Utilitários (helpers, configs)
+server/ # Back-end: loaders, actions, db
+db/ # Drizzle schema e migrações
+store/ # Estados globais com TanStack Store
+
+markdown
+Copiar código
+
+---
+
+## ✅ Boas práticas específicas
+
+- **TanStack Store**: manter stores desacoplados, apenas para estados globais essenciais.
+- **Drizzle**: schemas tipados, usar relações explícitas e zod para validação.
+- **PostgreSQL**: preferir UUID como primary key.
+- **UI/UX**: foco em simplicidade e acessibilidade (professores e alunos não são power users).
+- **Naming**: nomes de variáveis, funções e tabelas sempre claros, consistentes e em inglês.
+- **Commits**: usar convenção semântica (feat, fix, chore, refactor, etc).
+
+---
+
+## 🎨 Code Style
+
+- **ESLint**:
+  - Basear em `eslint:recommended` + `@typescript-eslint/recommended`.
+  - Erros devem ser tratados no lint antes do commit.
+- **Prettier**:
+  - Sempre rodar Prettier no pre-commit.
+  - Regras principais:
+    - Tab = 2 espaços.
+    - Aspas simples (`'`), exceto quando escapar.
+    - Ponto e vírgula obrigatório.
+    - Trailing comma em objetos/arrays.
+- **Naming conventions**:
+  - Variáveis/funções → `camelCase`.
+  - Classes/Componentes React → `PascalCase`.
+  - Constantes globais → `UPPER_SNAKE_CASE`.
+  - Tabelas do banco → `snake_case`.
+  - Colunas → `snake_case`.
+- **Imports**:
+  - Absolutos para módulos internos (`@/components/...`).
+  - Ordenar: libs externas → módulos internos → estilos.
+- **Types**:
+  - Sempre usar `interface` para contratos de objetos.
+  - Usar `type` para unions e aliases simples.
+  - Evitar `any` → sempre tipar corretamente.
+
+---
+
+## 🚨 O que evitar
+
+- Não misturar ORMs ou query builders.
+- Não criar componentes UI repetidos fora do Shadcn.
+- Não encher o projeto de abstrações desnecessárias.
+- Não depender de libs grandes para features simples (ex: Moment.js para datas → usar date-fns).
+- Não quebrar o padrão de commits semânticos.
+
+---
+
+## 🎯 Prioridades do MVP
+
+1. Sistema de cadastro/login básico.
+2. Configuração de agenda de professores.
+3. Link de agendamento para alunos.
+4. Pagamento via PIX/Cartão.
