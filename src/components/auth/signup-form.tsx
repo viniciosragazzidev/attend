@@ -1,10 +1,11 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { GithubIcon, Loader, LogIn, MailIcon } from "lucide-react";
+import { motion } from "framer-motion";
+import { GithubIcon, Loader, MailIcon, UserPlus } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -16,7 +17,10 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "@tanstack/react-router";
+import { authClient } from "@/lib/auth";
+import { useUser } from "@/lib/user-context";
+import { useMutation } from "@tanstack/react-query";
+import { Link, useNavigate } from "@tanstack/react-router";
 
 const registerSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters long"),
@@ -27,7 +31,7 @@ const registerSchema = z.object({
 
 type registerFormData = z.infer<typeof registerSchema>;
 
-export default function RegisterForm() {
+export default function SignupForm() {
   const {
     register,
     handleSubmit,
@@ -36,8 +40,43 @@ export default function RegisterForm() {
     resolver: zodResolver(registerSchema),
   });
 
+  const navigate = useNavigate();
+  const { refreshUser } = useUser();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (data: registerFormData) => {
+      const { name, lastName, email, password } = data;
+
+      const result = await authClient.signUp.email({
+        email,
+        password,
+        name: `${name} ${lastName}`,
+      });
+
+      if (result.error) {
+        throw new Error(result.error.message);
+      }
+      return result;
+    },
+    onSuccess: async () => {
+      await refreshUser();
+      
+      toast.success("Conta criada com sucesso!", {
+        description: "Bem-vindo! Sua conta foi criada e você já está logado.",
+      });
+
+      navigate({ to: "/dashboard" });
+    },
+    onError: (error) => {
+      console.error("Signup failed:", error.message);
+      toast.error("Erro ao criar conta", {
+        description: error.message || "Tente novamente ou use um email diferente.",
+      });
+    },
+  });
+
   const onSubmit = async (data: registerFormData) => {
-    console.log("form data -->", data);
+    mutate(data);
   };
 
   return (
@@ -46,20 +85,19 @@ export default function RegisterForm() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <Card className="w-full border-border/50  md:w-[350px]">
+      <Card className="w-full border-border/50 md:w-[400px]">
         <CardHeader className="text-center">
           <div className="flex justify-center items-center">
-            {" "}
             <div className="w-34 flex">
               <img src="/logo.svg" alt="Kyper" className="w-full" />
             </div>
           </div>
-          <CardTitle className="text-lg">Crie sua conta</CardTitle>
+          <CardTitle className="text-lg">Criar nova conta</CardTitle>
           <CardDescription>
-            Informe suas informações para criar sua conta.
+            Preencha os dados abaixo para criar sua conta.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-8">
+        <CardContent className="space-y-6">
           <div className="grid grid-cols-2 gap-4">
             <Button variant="outline" className="w-full">
               <MailIcon />
@@ -75,41 +113,35 @@ export default function RegisterForm() {
               <span className="w-full border-t" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background text-muted-foreground px-2">
+              <span className="bg-background px-2 text-muted-foreground">
                 Ou continue com
               </span>
             </div>
           </div>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div className="flex items-center gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Nome</Label>
                 <Input
                   id="name"
-                  type="text"
-                  placeholder="Joe"
+                  placeholder="João"
                   {...register("name")}
-                  aria-invalid={errors.name ? "true" : "false"}
+                  className={errors.name ? "border-red-500" : ""}
                 />
                 {errors.name && (
-                  <p className="mt-1 text-sm text-red-500">
-                    {errors.name.message}
-                  </p>
+                  <p className="text-sm text-red-500">{errors.name.message}</p>
                 )}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="lastName">Name</Label>
+                <Label htmlFor="lastName">Sobrenome</Label>
                 <Input
                   id="lastName"
-                  type="text"
-                  placeholder="Doe"
+                  placeholder="Silva"
                   {...register("lastName")}
-                  aria-invalid={errors.lastName ? "true" : "false"}
+                  className={errors.lastName ? "border-red-500" : ""}
                 />
                 {errors.lastName && (
-                  <p className="mt-1 text-sm text-red-500">
-                    {errors.lastName.message}
-                  </p>
+                  <p className="text-sm text-red-500">{errors.lastName.message}</p>
                 )}
               </div>
             </div>
@@ -120,12 +152,10 @@ export default function RegisterForm() {
                 type="email"
                 placeholder="seu@email.com"
                 {...register("email")}
-                aria-invalid={errors.email ? "true" : "false"}
+                className={errors.email ? "border-red-500" : ""}
               />
               {errors.email && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.email.message}
-                </p>
+                <p className="text-sm text-red-500">{errors.email.message}</p>
               )}
             </div>
             <div className="space-y-2">
@@ -133,36 +163,44 @@ export default function RegisterForm() {
               <Input
                 id="password"
                 type="password"
-                placeholder="**********"
+                placeholder="••••••••"
                 {...register("password")}
-                aria-invalid={errors.password ? "true" : "false"}
+                className={errors.password ? "border-red-500" : ""}
               />
               {errors.password && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.password.message}
-                </p>
+                <p className="text-sm text-red-500">{errors.password.message}</p>
               )}
             </div>
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? (
-                <Loader className="animate-spin" />
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={isPending || isSubmitting}
+            >
+              {isPending || isSubmitting ? (
+                <>
+                  <Loader className="mr-2 h-4 w-4 animate-spin" />
+                  Criando conta...
+                </>
               ) : (
-                <span className="flex items-center gap-1">
+                <>
+                  <UserPlus className="mr-2 h-4 w-4" />
                   Criar conta
-                  <LogIn className="ml-1" />
-                </span>
+                </>
               )}
             </Button>
           </form>
-        </CardContent>
-        <div className="flex justify-center">
-          <span className="text-sm text-muted-foreground ">
-            <span>Já tem uma conta?</span>{" "}
-            <Link to="/signin" className="text-primary">
-              Faça login!
+          <div className="text-center text-sm">
+            <span className="text-muted-foreground">
+              Já tem uma conta?{" "}
+            </span>
+            <Link
+              to="/signin"
+              className="text-primary hover:underline font-medium"
+            >
+              Faça login
             </Link>
-          </span>
-        </div>
+          </div>
+        </CardContent>
       </Card>
     </motion.div>
   );

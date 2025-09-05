@@ -1,10 +1,11 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { motion } from "framer-motion";
 import { GithubIcon, Loader, LogIn, MailIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
-import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -16,7 +17,10 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "@tanstack/react-router";
+import { authClient } from "@/lib/auth";
+import { useUserCompany } from "@/lib/use-user-company";
+import { useMutation } from "@tanstack/react-query";
+import { Link, useNavigate } from "@tanstack/react-router";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -34,8 +38,46 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
+  const navigate = useNavigate();
+  const { refreshAll } = useUserCompany();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (data: LoginFormData) => {
+      const { email, password } = data;
+
+      // Chama o endpoint de login no backend Fastify
+      const result = await authClient.signIn.email({
+        email,
+        password,
+      });
+
+      if (result.error) {
+        throw new Error(result.error.message);
+      }
+      return result;
+    },
+    onSuccess: async () => {
+      // Atualiza ambos os contextos
+      await refreshAll();
+
+      toast.success("Login realizado com sucesso!", {
+        description: "Bem-vindo de volta!",
+      });
+
+      // Redireciona o usuário após o login bem-sucedido
+      navigate({ to: "/dashboard" });
+    },
+    onError: (error) => {
+      console.error("Login failed:", error.message);
+      toast.error("Erro ao fazer login", {
+        description:
+          error.message || "Verifique suas credenciais e tente novamente.",
+      });
+    },
+  });
+
   const onSubmit = async (data: LoginFormData) => {
-    console.log("form data -->", data);
+    mutate(data);
   };
 
   return (
@@ -73,7 +115,7 @@ export default function LoginForm() {
               <span className="w-full border-t" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background text-muted-foreground px-2">
+              <span className="bg-background px-2 text-muted-foreground">
                 Ou continue com
               </span>
             </div>
@@ -86,12 +128,10 @@ export default function LoginForm() {
                 type="email"
                 placeholder="seu@email.com"
                 {...register("email")}
-                aria-invalid={errors.email ? "true" : "false"}
+                className={errors.email ? "border-red-500" : ""}
               />
               {errors.email && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.email.message}
-                </p>
+                <p className="text-sm text-red-500">{errors.email.message}</p>
               )}
             </div>
             <div className="space-y-2">
@@ -99,36 +139,44 @@ export default function LoginForm() {
               <Input
                 id="password"
                 type="password"
-                placeholder="**********"
+                placeholder="••••••••"
                 {...register("password")}
-                aria-invalid={errors.password ? "true" : "false"}
+                className={errors.password ? "border-red-500" : ""}
               />
               {errors.password && (
-                <p className="mt-1 text-sm text-red-500">
+                <p className="text-sm text-red-500">
                   {errors.password.message}
                 </p>
               )}
             </div>
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? (
-                <Loader className="animate-spin" />
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={isPending || isSubmitting}
+            >
+              {isPending || isSubmitting ? (
+                <>
+                  <Loader className="mr-2 h-4 w-4 animate-spin" />
+                  Entrando...
+                </>
               ) : (
-                <span className="flex items-center gap-1">
-                  Entrar na conta
-                  <LogIn className="ml-1" />
-                </span>
+                <>
+                  <LogIn className="mr-2 h-4 w-4" />
+                  Entrar
+                </>
               )}
             </Button>
           </form>
-        </CardContent>
-        <div className="flex justify-center">
-          <span className="text-sm text-muted-foreground ">
-            <span>Ainda não tem uma conta?</span>{" "}
-            <Link to="/signup" className="text-primary">
-              Crie uma agora!
+          <div className="text-center text-sm">
+            <span className="text-muted-foreground">Não tem uma conta? </span>
+            <Link
+              to="/signup"
+              className="text-primary hover:underline font-medium"
+            >
+              Cadastre-se
             </Link>
-          </span>
-        </div>
+          </div>
+        </CardContent>
       </Card>
     </motion.div>
   );

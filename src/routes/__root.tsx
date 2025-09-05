@@ -1,9 +1,17 @@
 import { TanstackDevtools } from "@tanstack/react-devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
+import { DirectionProvider } from "../context/direction-provider";
+import { FontProvider } from "../context/font-provider";
+import { ThemeProvider } from "../context/theme-provider";
+import { CompanyProvider } from "../lib/company-context";
 import StoreDevtools from "../lib/demo-store-devtools";
+import { UserProvider } from "../lib/user-context";
 
+import { NavigationProgress } from "@/components/navigation-progress";
+import { Toaster } from "sonner";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -30,6 +38,7 @@ export const Route = createRootRoute({
 
   shellComponent: RootDocument,
 });
+const queryClient = new QueryClient();
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
@@ -38,20 +47,34 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {children}
-        <TanstackDevtools
-          config={{
-            position: "bottom-left",
-          }}
-          plugins={[
-            {
-              name: "Tanstack Router",
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-            StoreDevtools,
-          ]}
-        />
-        <Scripts />
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider>
+            <FontProvider>
+              <DirectionProvider>
+                <UserProvider>
+                  <CompanyProvider>
+                    <NavigationProgress />
+                    {children}
+                    <Toaster duration={5000} />
+                    <TanstackDevtools
+                      config={{
+                        position: "bottom-left",
+                      }}
+                      plugins={[
+                        {
+                          name: "Tanstack Router",
+                          render: <TanStackRouterDevtoolsPanel />,
+                        },
+                        StoreDevtools,
+                      ]}
+                    />
+                    <Scripts />
+                  </CompanyProvider>
+                </UserProvider>
+              </DirectionProvider>
+            </FontProvider>
+          </ThemeProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );
