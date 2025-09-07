@@ -77,6 +77,11 @@ export const sidebarData: SidebarData = {
           icon: Users,
         },
         {
+          title: "Companies",
+          url: "/companies",
+          icon: Package,
+        },
+        {
           title: "Errors",
           icon: Bug,
           items: [

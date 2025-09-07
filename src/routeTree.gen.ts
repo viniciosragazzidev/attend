@@ -8,641 +8,641 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createServerRootRoute } from '@tanstack/react-start/server'
+import { createServerRootRoute } from "@tanstack/react-start/server";
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as AuthRouteImport } from './routes/_auth'
-import { Route as AppRouteImport } from './routes/_app'
-import { Route as AdminRouteImport } from './routes/_admin'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthSignupRouteImport } from './routes/_auth/signup'
-import { Route as AuthSigninRouteImport } from './routes/_auth/signin'
-import { Route as AppServicesRouteImport } from './routes/_app/services'
-import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
-import { Route as AppCompaniesRouteImport } from './routes/_app/companies'
-import { Route as AdminUsersRouteImport } from './routes/_admin/users'
-import { Route as errors503RouteImport } from './routes/(errors)/503'
-import { Route as errors500RouteImport } from './routes/(errors)/500'
-import { Route as errors404RouteImport } from './routes/(errors)/404'
-import { Route as errors403RouteImport } from './routes/(errors)/403'
-import { Route as errors401RouteImport } from './routes/(errors)/401'
-import { Route as AppSettingsRouteRouteImport } from './routes/_app/settings/route'
-import { Route as AppTasksIndexRouteImport } from './routes/_app/tasks/index'
-import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings/index'
-import { Route as AppHelpCenterIndexRouteImport } from './routes/_app/help-center/index'
-import { Route as AppChatsIndexRouteImport } from './routes/_app/chats/index'
-import { Route as AppAppsIndexRouteImport } from './routes/_app/apps/index'
-import { Route as ExemplesDemoStoreRouteImport } from './routes/exemples/demo.store'
-import { Route as AppSettingsNotificationsRouteImport } from './routes/_app/settings/notifications'
-import { Route as AppSettingsDisplayRouteImport } from './routes/_app/settings/display'
-import { Route as AppSettingsAppearanceRouteImport } from './routes/_app/settings/appearance'
-import { Route as AppSettingsAccountRouteImport } from './routes/_app/settings/account'
-import { Route as AppErrorsErrorRouteImport } from './routes/_app/errors/$error'
-import { Route as ExemplesDemoStartServerFuncsRouteImport } from './routes/exemples/demo.start.server-funcs'
-import { Route as ExemplesDemoStartApiRequestRouteImport } from './routes/exemples/demo.start.api-request'
-import { ServerRoute as ExemplesApiDemoNamesServerRouteImport } from './routes/exemples/api.demo-names'
+import { Route as errors401RouteImport } from "./routes/(errors)/401";
+import { Route as errors403RouteImport } from "./routes/(errors)/403";
+import { Route as errors404RouteImport } from "./routes/(errors)/404";
+import { Route as errors500RouteImport } from "./routes/(errors)/500";
+import { Route as errors503RouteImport } from "./routes/(errors)/503";
+import { Route as rootRouteImport } from "./routes/__root";
+import { Route as AdminRouteImport } from "./routes/_admin";
+import { Route as AppCompaniesRouteImport } from "./routes/_admin/companies";
+import { Route as AdminUsersRouteImport } from "./routes/_admin/users";
+import { Route as AppRouteImport } from "./routes/_app";
+import { Route as AppAppsIndexRouteImport } from "./routes/_app/apps/index";
+import { Route as AppChatsIndexRouteImport } from "./routes/_app/chats/index";
+import { Route as AppDashboardRouteImport } from "./routes/_app/dashboard";
+import { Route as AppErrorsErrorRouteImport } from "./routes/_app/errors/$error";
+import { Route as AppHelpCenterIndexRouteImport } from "./routes/_app/help-center/index";
+import { Route as AppServicesRouteImport } from "./routes/_app/services";
+import { Route as AppSettingsAccountRouteImport } from "./routes/_app/settings/account";
+import { Route as AppSettingsAppearanceRouteImport } from "./routes/_app/settings/appearance";
+import { Route as AppSettingsDisplayRouteImport } from "./routes/_app/settings/display";
+import { Route as AppSettingsIndexRouteImport } from "./routes/_app/settings/index";
+import { Route as AppSettingsNotificationsRouteImport } from "./routes/_app/settings/notifications";
+import { Route as AppSettingsRouteRouteImport } from "./routes/_app/settings/route";
+import { Route as AppTasksIndexRouteImport } from "./routes/_app/tasks/index";
+import { Route as AuthRouteImport } from "./routes/_auth";
+import { Route as AuthSigninRouteImport } from "./routes/_auth/signin";
+import { Route as AuthSignupRouteImport } from "./routes/_auth/signup";
+import { ServerRoute as ExemplesApiDemoNamesServerRouteImport } from "./routes/exemples/api.demo-names";
+import { Route as ExemplesDemoStartApiRequestRouteImport } from "./routes/exemples/demo.start.api-request";
+import { Route as ExemplesDemoStartServerFuncsRouteImport } from "./routes/exemples/demo.start.server-funcs";
+import { Route as ExemplesDemoStoreRouteImport } from "./routes/exemples/demo.store";
+import { Route as IndexRouteImport } from "./routes/index";
 
-const rootServerRouteImport = createServerRootRoute()
+const rootServerRouteImport = createServerRootRoute();
 
 const AuthRoute = AuthRouteImport.update({
-  id: '/_auth',
+  id: "/_auth",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AppRoute = AppRouteImport.update({
-  id: '/_app',
+  id: "/_app",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AdminRoute = AdminRouteImport.update({
-  id: '/_admin',
+  id: "/_admin",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AuthSignupRoute = AuthSignupRouteImport.update({
-  id: '/signup',
-  path: '/signup',
+  id: "/signup",
+  path: "/signup",
   getParentRoute: () => AuthRoute,
-} as any)
+} as any);
 const AuthSigninRoute = AuthSigninRouteImport.update({
-  id: '/signin',
-  path: '/signin',
+  id: "/signin",
+  path: "/signin",
   getParentRoute: () => AuthRoute,
-} as any)
+} as any);
 const AppServicesRoute = AppServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
+  id: "/services",
+  path: "/services",
   getParentRoute: () => AppRoute,
-} as any)
+} as any);
 const AppDashboardRoute = AppDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
+  id: "/dashboard",
+  path: "/dashboard",
   getParentRoute: () => AppRoute,
-} as any)
+} as any);
 const AppCompaniesRoute = AppCompaniesRouteImport.update({
-  id: '/companies',
-  path: '/companies',
+  id: "/companies",
+  path: "/companies",
   getParentRoute: () => AppRoute,
-} as any)
+} as any);
 const AdminUsersRoute = AdminUsersRouteImport.update({
-  id: '/users',
-  path: '/users',
+  id: "/users",
+  path: "/users",
   getParentRoute: () => AdminRoute,
-} as any)
+} as any);
 const errors503Route = errors503RouteImport.update({
-  id: '/(errors)/503',
-  path: '/503',
+  id: "/(errors)/503",
+  path: "/503",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const errors500Route = errors500RouteImport.update({
-  id: '/(errors)/500',
-  path: '/500',
+  id: "/(errors)/500",
+  path: "/500",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const errors404Route = errors404RouteImport.update({
-  id: '/(errors)/404',
-  path: '/404',
+  id: "/(errors)/404",
+  path: "/404",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const errors403Route = errors403RouteImport.update({
-  id: '/(errors)/403',
-  path: '/403',
+  id: "/(errors)/403",
+  path: "/403",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const errors401Route = errors401RouteImport.update({
-  id: '/(errors)/401',
-  path: '/401',
+  id: "/(errors)/401",
+  path: "/401",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AppSettingsRouteRoute = AppSettingsRouteRouteImport.update({
-  id: '/settings',
-  path: '/settings',
+  id: "/settings",
+  path: "/settings",
   getParentRoute: () => AppRoute,
-} as any)
+} as any);
 const AppTasksIndexRoute = AppTasksIndexRouteImport.update({
-  id: '/tasks/',
-  path: '/tasks/',
+  id: "/tasks/",
+  path: "/tasks/",
   getParentRoute: () => AppRoute,
-} as any)
+} as any);
 const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => AppSettingsRouteRoute,
-} as any)
+} as any);
 const AppHelpCenterIndexRoute = AppHelpCenterIndexRouteImport.update({
-  id: '/help-center/',
-  path: '/help-center/',
+  id: "/help-center/",
+  path: "/help-center/",
   getParentRoute: () => AppRoute,
-} as any)
+} as any);
 const AppChatsIndexRoute = AppChatsIndexRouteImport.update({
-  id: '/chats/',
-  path: '/chats/',
+  id: "/chats/",
+  path: "/chats/",
   getParentRoute: () => AppRoute,
-} as any)
+} as any);
 const AppAppsIndexRoute = AppAppsIndexRouteImport.update({
-  id: '/apps/',
-  path: '/apps/',
+  id: "/apps/",
+  path: "/apps/",
   getParentRoute: () => AppRoute,
-} as any)
+} as any);
 const ExemplesDemoStoreRoute = ExemplesDemoStoreRouteImport.update({
-  id: '/exemples/demo/store',
-  path: '/exemples/demo/store',
+  id: "/exemples/demo/store",
+  path: "/exemples/demo/store",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AppSettingsNotificationsRoute =
   AppSettingsNotificationsRouteImport.update({
-    id: '/notifications',
-    path: '/notifications',
+    id: "/notifications",
+    path: "/notifications",
     getParentRoute: () => AppSettingsRouteRoute,
-  } as any)
+  } as any);
 const AppSettingsDisplayRoute = AppSettingsDisplayRouteImport.update({
-  id: '/display',
-  path: '/display',
+  id: "/display",
+  path: "/display",
   getParentRoute: () => AppSettingsRouteRoute,
-} as any)
+} as any);
 const AppSettingsAppearanceRoute = AppSettingsAppearanceRouteImport.update({
-  id: '/appearance',
-  path: '/appearance',
+  id: "/appearance",
+  path: "/appearance",
   getParentRoute: () => AppSettingsRouteRoute,
-} as any)
+} as any);
 const AppSettingsAccountRoute = AppSettingsAccountRouteImport.update({
-  id: '/account',
-  path: '/account',
+  id: "/account",
+  path: "/account",
   getParentRoute: () => AppSettingsRouteRoute,
-} as any)
+} as any);
 const AppErrorsErrorRoute = AppErrorsErrorRouteImport.update({
-  id: '/errors/$error',
-  path: '/errors/$error',
+  id: "/errors/$error",
+  path: "/errors/$error",
   getParentRoute: () => AppRoute,
-} as any)
+} as any);
 const ExemplesDemoStartServerFuncsRoute =
   ExemplesDemoStartServerFuncsRouteImport.update({
-    id: '/exemples/demo/start/server-funcs',
-    path: '/exemples/demo/start/server-funcs',
+    id: "/exemples/demo/start/server-funcs",
+    path: "/exemples/demo/start/server-funcs",
     getParentRoute: () => rootRouteImport,
-  } as any)
+  } as any);
 const ExemplesDemoStartApiRequestRoute =
   ExemplesDemoStartApiRequestRouteImport.update({
-    id: '/exemples/demo/start/api-request',
-    path: '/exemples/demo/start/api-request',
+    id: "/exemples/demo/start/api-request",
+    path: "/exemples/demo/start/api-request",
     getParentRoute: () => rootRouteImport,
-  } as any)
+  } as any);
 const ExemplesApiDemoNamesServerRoute =
   ExemplesApiDemoNamesServerRouteImport.update({
-    id: '/exemples/api/demo-names',
-    path: '/exemples/api/demo-names',
+    id: "/exemples/api/demo-names",
+    path: "/exemples/api/demo-names",
     getParentRoute: () => rootServerRouteImport,
-  } as any)
+  } as any);
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/settings': typeof AppSettingsRouteRouteWithChildren
-  '/401': typeof errors401Route
-  '/403': typeof errors403Route
-  '/404': typeof errors404Route
-  '/500': typeof errors500Route
-  '/503': typeof errors503Route
-  '/users': typeof AdminUsersRoute
-  '/companies': typeof AppCompaniesRoute
-  '/dashboard': typeof AppDashboardRoute
-  '/services': typeof AppServicesRoute
-  '/signin': typeof AuthSigninRoute
-  '/signup': typeof AuthSignupRoute
-  '/errors/$error': typeof AppErrorsErrorRoute
-  '/settings/account': typeof AppSettingsAccountRoute
-  '/settings/appearance': typeof AppSettingsAppearanceRoute
-  '/settings/display': typeof AppSettingsDisplayRoute
-  '/settings/notifications': typeof AppSettingsNotificationsRoute
-  '/exemples/demo/store': typeof ExemplesDemoStoreRoute
-  '/apps': typeof AppAppsIndexRoute
-  '/chats': typeof AppChatsIndexRoute
-  '/help-center': typeof AppHelpCenterIndexRoute
-  '/settings/': typeof AppSettingsIndexRoute
-  '/tasks': typeof AppTasksIndexRoute
-  '/exemples/demo/start/api-request': typeof ExemplesDemoStartApiRequestRoute
-  '/exemples/demo/start/server-funcs': typeof ExemplesDemoStartServerFuncsRoute
+  "/": typeof IndexRoute;
+  "/settings": typeof AppSettingsRouteRouteWithChildren;
+  "/401": typeof errors401Route;
+  "/403": typeof errors403Route;
+  "/404": typeof errors404Route;
+  "/500": typeof errors500Route;
+  "/503": typeof errors503Route;
+  "/users": typeof AdminUsersRoute;
+  "/companies": typeof AppCompaniesRoute;
+  "/dashboard": typeof AppDashboardRoute;
+  "/services": typeof AppServicesRoute;
+  "/signin": typeof AuthSigninRoute;
+  "/signup": typeof AuthSignupRoute;
+  "/errors/$error": typeof AppErrorsErrorRoute;
+  "/settings/account": typeof AppSettingsAccountRoute;
+  "/settings/appearance": typeof AppSettingsAppearanceRoute;
+  "/settings/display": typeof AppSettingsDisplayRoute;
+  "/settings/notifications": typeof AppSettingsNotificationsRoute;
+  "/exemples/demo/store": typeof ExemplesDemoStoreRoute;
+  "/apps": typeof AppAppsIndexRoute;
+  "/chats": typeof AppChatsIndexRoute;
+  "/help-center": typeof AppHelpCenterIndexRoute;
+  "/settings/": typeof AppSettingsIndexRoute;
+  "/tasks": typeof AppTasksIndexRoute;
+  "/exemples/demo/start/api-request": typeof ExemplesDemoStartApiRequestRoute;
+  "/exemples/demo/start/server-funcs": typeof ExemplesDemoStartServerFuncsRoute;
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/401': typeof errors401Route
-  '/403': typeof errors403Route
-  '/404': typeof errors404Route
-  '/500': typeof errors500Route
-  '/503': typeof errors503Route
-  '/users': typeof AdminUsersRoute
-  '/companies': typeof AppCompaniesRoute
-  '/dashboard': typeof AppDashboardRoute
-  '/services': typeof AppServicesRoute
-  '/signin': typeof AuthSigninRoute
-  '/signup': typeof AuthSignupRoute
-  '/errors/$error': typeof AppErrorsErrorRoute
-  '/settings/account': typeof AppSettingsAccountRoute
-  '/settings/appearance': typeof AppSettingsAppearanceRoute
-  '/settings/display': typeof AppSettingsDisplayRoute
-  '/settings/notifications': typeof AppSettingsNotificationsRoute
-  '/exemples/demo/store': typeof ExemplesDemoStoreRoute
-  '/apps': typeof AppAppsIndexRoute
-  '/chats': typeof AppChatsIndexRoute
-  '/help-center': typeof AppHelpCenterIndexRoute
-  '/settings': typeof AppSettingsIndexRoute
-  '/tasks': typeof AppTasksIndexRoute
-  '/exemples/demo/start/api-request': typeof ExemplesDemoStartApiRequestRoute
-  '/exemples/demo/start/server-funcs': typeof ExemplesDemoStartServerFuncsRoute
+  "/": typeof IndexRoute;
+  "/401": typeof errors401Route;
+  "/403": typeof errors403Route;
+  "/404": typeof errors404Route;
+  "/500": typeof errors500Route;
+  "/503": typeof errors503Route;
+  "/users": typeof AdminUsersRoute;
+  "/companies": typeof AppCompaniesRoute;
+  "/dashboard": typeof AppDashboardRoute;
+  "/services": typeof AppServicesRoute;
+  "/signin": typeof AuthSigninRoute;
+  "/signup": typeof AuthSignupRoute;
+  "/errors/$error": typeof AppErrorsErrorRoute;
+  "/settings/account": typeof AppSettingsAccountRoute;
+  "/settings/appearance": typeof AppSettingsAppearanceRoute;
+  "/settings/display": typeof AppSettingsDisplayRoute;
+  "/settings/notifications": typeof AppSettingsNotificationsRoute;
+  "/exemples/demo/store": typeof ExemplesDemoStoreRoute;
+  "/apps": typeof AppAppsIndexRoute;
+  "/chats": typeof AppChatsIndexRoute;
+  "/help-center": typeof AppHelpCenterIndexRoute;
+  "/settings": typeof AppSettingsIndexRoute;
+  "/tasks": typeof AppTasksIndexRoute;
+  "/exemples/demo/start/api-request": typeof ExemplesDemoStartApiRequestRoute;
+  "/exemples/demo/start/server-funcs": typeof ExemplesDemoStartServerFuncsRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/_admin': typeof AdminRouteWithChildren
-  '/_app': typeof AppRouteWithChildren
-  '/_auth': typeof AuthRouteWithChildren
-  '/_app/settings': typeof AppSettingsRouteRouteWithChildren
-  '/(errors)/401': typeof errors401Route
-  '/(errors)/403': typeof errors403Route
-  '/(errors)/404': typeof errors404Route
-  '/(errors)/500': typeof errors500Route
-  '/(errors)/503': typeof errors503Route
-  '/_admin/users': typeof AdminUsersRoute
-  '/_app/companies': typeof AppCompaniesRoute
-  '/_app/dashboard': typeof AppDashboardRoute
-  '/_app/services': typeof AppServicesRoute
-  '/_auth/signin': typeof AuthSigninRoute
-  '/_auth/signup': typeof AuthSignupRoute
-  '/_app/errors/$error': typeof AppErrorsErrorRoute
-  '/_app/settings/account': typeof AppSettingsAccountRoute
-  '/_app/settings/appearance': typeof AppSettingsAppearanceRoute
-  '/_app/settings/display': typeof AppSettingsDisplayRoute
-  '/_app/settings/notifications': typeof AppSettingsNotificationsRoute
-  '/exemples/demo/store': typeof ExemplesDemoStoreRoute
-  '/_app/apps/': typeof AppAppsIndexRoute
-  '/_app/chats/': typeof AppChatsIndexRoute
-  '/_app/help-center/': typeof AppHelpCenterIndexRoute
-  '/_app/settings/': typeof AppSettingsIndexRoute
-  '/_app/tasks/': typeof AppTasksIndexRoute
-  '/exemples/demo/start/api-request': typeof ExemplesDemoStartApiRequestRoute
-  '/exemples/demo/start/server-funcs': typeof ExemplesDemoStartServerFuncsRoute
+  __root__: typeof rootRouteImport;
+  "/": typeof IndexRoute;
+  "/_admin": typeof AdminRouteWithChildren;
+  "/_app": typeof AppRouteWithChildren;
+  "/_auth": typeof AuthRouteWithChildren;
+  "/_app/settings": typeof AppSettingsRouteRouteWithChildren;
+  "/(errors)/401": typeof errors401Route;
+  "/(errors)/403": typeof errors403Route;
+  "/(errors)/404": typeof errors404Route;
+  "/(errors)/500": typeof errors500Route;
+  "/(errors)/503": typeof errors503Route;
+  "/_admin/users": typeof AdminUsersRoute;
+  "/_app/companies": typeof AppCompaniesRoute;
+  "/_app/dashboard": typeof AppDashboardRoute;
+  "/_app/services": typeof AppServicesRoute;
+  "/_auth/signin": typeof AuthSigninRoute;
+  "/_auth/signup": typeof AuthSignupRoute;
+  "/_app/errors/$error": typeof AppErrorsErrorRoute;
+  "/_app/settings/account": typeof AppSettingsAccountRoute;
+  "/_app/settings/appearance": typeof AppSettingsAppearanceRoute;
+  "/_app/settings/display": typeof AppSettingsDisplayRoute;
+  "/_app/settings/notifications": typeof AppSettingsNotificationsRoute;
+  "/exemples/demo/store": typeof ExemplesDemoStoreRoute;
+  "/_app/apps/": typeof AppAppsIndexRoute;
+  "/_app/chats/": typeof AppChatsIndexRoute;
+  "/_app/help-center/": typeof AppHelpCenterIndexRoute;
+  "/_app/settings/": typeof AppSettingsIndexRoute;
+  "/_app/tasks/": typeof AppTasksIndexRoute;
+  "/exemples/demo/start/api-request": typeof ExemplesDemoStartApiRequestRoute;
+  "/exemples/demo/start/server-funcs": typeof ExemplesDemoStartServerFuncsRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
-    | '/'
-    | '/settings'
-    | '/401'
-    | '/403'
-    | '/404'
-    | '/500'
-    | '/503'
-    | '/users'
-    | '/companies'
-    | '/dashboard'
-    | '/services'
-    | '/signin'
-    | '/signup'
-    | '/errors/$error'
-    | '/settings/account'
-    | '/settings/appearance'
-    | '/settings/display'
-    | '/settings/notifications'
-    | '/exemples/demo/store'
-    | '/apps'
-    | '/chats'
-    | '/help-center'
-    | '/settings/'
-    | '/tasks'
-    | '/exemples/demo/start/api-request'
-    | '/exemples/demo/start/server-funcs'
-  fileRoutesByTo: FileRoutesByTo
+    | "/"
+    | "/settings"
+    | "/401"
+    | "/403"
+    | "/404"
+    | "/500"
+    | "/503"
+    | "/users"
+    | "/companies"
+    | "/dashboard"
+    | "/services"
+    | "/signin"
+    | "/signup"
+    | "/errors/$error"
+    | "/settings/account"
+    | "/settings/appearance"
+    | "/settings/display"
+    | "/settings/notifications"
+    | "/exemples/demo/store"
+    | "/apps"
+    | "/chats"
+    | "/help-center"
+    | "/settings/"
+    | "/tasks"
+    | "/exemples/demo/start/api-request"
+    | "/exemples/demo/start/server-funcs";
+  fileRoutesByTo: FileRoutesByTo;
   to:
-    | '/'
-    | '/401'
-    | '/403'
-    | '/404'
-    | '/500'
-    | '/503'
-    | '/users'
-    | '/companies'
-    | '/dashboard'
-    | '/services'
-    | '/signin'
-    | '/signup'
-    | '/errors/$error'
-    | '/settings/account'
-    | '/settings/appearance'
-    | '/settings/display'
-    | '/settings/notifications'
-    | '/exemples/demo/store'
-    | '/apps'
-    | '/chats'
-    | '/help-center'
-    | '/settings'
-    | '/tasks'
-    | '/exemples/demo/start/api-request'
-    | '/exemples/demo/start/server-funcs'
+    | "/"
+    | "/401"
+    | "/403"
+    | "/404"
+    | "/500"
+    | "/503"
+    | "/users"
+    | "/companies"
+    | "/dashboard"
+    | "/services"
+    | "/signin"
+    | "/signup"
+    | "/errors/$error"
+    | "/settings/account"
+    | "/settings/appearance"
+    | "/settings/display"
+    | "/settings/notifications"
+    | "/exemples/demo/store"
+    | "/apps"
+    | "/chats"
+    | "/help-center"
+    | "/settings"
+    | "/tasks"
+    | "/exemples/demo/start/api-request"
+    | "/exemples/demo/start/server-funcs";
   id:
-    | '__root__'
-    | '/'
-    | '/_admin'
-    | '/_app'
-    | '/_auth'
-    | '/_app/settings'
-    | '/(errors)/401'
-    | '/(errors)/403'
-    | '/(errors)/404'
-    | '/(errors)/500'
-    | '/(errors)/503'
-    | '/_admin/users'
-    | '/_app/companies'
-    | '/_app/dashboard'
-    | '/_app/services'
-    | '/_auth/signin'
-    | '/_auth/signup'
-    | '/_app/errors/$error'
-    | '/_app/settings/account'
-    | '/_app/settings/appearance'
-    | '/_app/settings/display'
-    | '/_app/settings/notifications'
-    | '/exemples/demo/store'
-    | '/_app/apps/'
-    | '/_app/chats/'
-    | '/_app/help-center/'
-    | '/_app/settings/'
-    | '/_app/tasks/'
-    | '/exemples/demo/start/api-request'
-    | '/exemples/demo/start/server-funcs'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/"
+    | "/_admin"
+    | "/_app"
+    | "/_auth"
+    | "/_app/settings"
+    | "/(errors)/401"
+    | "/(errors)/403"
+    | "/(errors)/404"
+    | "/(errors)/500"
+    | "/(errors)/503"
+    | "/_admin/users"
+    | "/_app/companies"
+    | "/_app/dashboard"
+    | "/_app/services"
+    | "/_auth/signin"
+    | "/_auth/signup"
+    | "/_app/errors/$error"
+    | "/_app/settings/account"
+    | "/_app/settings/appearance"
+    | "/_app/settings/display"
+    | "/_app/settings/notifications"
+    | "/exemples/demo/store"
+    | "/_app/apps/"
+    | "/_app/chats/"
+    | "/_app/help-center/"
+    | "/_app/settings/"
+    | "/_app/tasks/"
+    | "/exemples/demo/start/api-request"
+    | "/exemples/demo/start/server-funcs";
+  fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AdminRoute: typeof AdminRouteWithChildren
-  AppRoute: typeof AppRouteWithChildren
-  AuthRoute: typeof AuthRouteWithChildren
-  errors401Route: typeof errors401Route
-  errors403Route: typeof errors403Route
-  errors404Route: typeof errors404Route
-  errors500Route: typeof errors500Route
-  errors503Route: typeof errors503Route
-  ExemplesDemoStoreRoute: typeof ExemplesDemoStoreRoute
-  ExemplesDemoStartApiRequestRoute: typeof ExemplesDemoStartApiRequestRoute
-  ExemplesDemoStartServerFuncsRoute: typeof ExemplesDemoStartServerFuncsRoute
+  IndexRoute: typeof IndexRoute;
+  AdminRoute: typeof AdminRouteWithChildren;
+  AppRoute: typeof AppRouteWithChildren;
+  AuthRoute: typeof AuthRouteWithChildren;
+  errors401Route: typeof errors401Route;
+  errors403Route: typeof errors403Route;
+  errors404Route: typeof errors404Route;
+  errors500Route: typeof errors500Route;
+  errors503Route: typeof errors503Route;
+  ExemplesDemoStoreRoute: typeof ExemplesDemoStoreRoute;
+  ExemplesDemoStartApiRequestRoute: typeof ExemplesDemoStartApiRequestRoute;
+  ExemplesDemoStartServerFuncsRoute: typeof ExemplesDemoStartServerFuncsRoute;
 }
 export interface FileServerRoutesByFullPath {
-  '/exemples/api/demo-names': typeof ExemplesApiDemoNamesServerRoute
+  "/exemples/api/demo-names": typeof ExemplesApiDemoNamesServerRoute;
 }
 export interface FileServerRoutesByTo {
-  '/exemples/api/demo-names': typeof ExemplesApiDemoNamesServerRoute
+  "/exemples/api/demo-names": typeof ExemplesApiDemoNamesServerRoute;
 }
 export interface FileServerRoutesById {
-  __root__: typeof rootServerRouteImport
-  '/exemples/api/demo-names': typeof ExemplesApiDemoNamesServerRoute
+  __root__: typeof rootServerRouteImport;
+  "/exemples/api/demo-names": typeof ExemplesApiDemoNamesServerRoute;
 }
 export interface FileServerRouteTypes {
-  fileServerRoutesByFullPath: FileServerRoutesByFullPath
-  fullPaths: '/exemples/api/demo-names'
-  fileServerRoutesByTo: FileServerRoutesByTo
-  to: '/exemples/api/demo-names'
-  id: '__root__' | '/exemples/api/demo-names'
-  fileServerRoutesById: FileServerRoutesById
+  fileServerRoutesByFullPath: FileServerRoutesByFullPath;
+  fullPaths: "/exemples/api/demo-names";
+  fileServerRoutesByTo: FileServerRoutesByTo;
+  to: "/exemples/api/demo-names";
+  id: "__root__" | "/exemples/api/demo-names";
+  fileServerRoutesById: FileServerRoutesById;
 }
 export interface RootServerRouteChildren {
-  ExemplesApiDemoNamesServerRoute: typeof ExemplesApiDemoNamesServerRoute
+  ExemplesApiDemoNamesServerRoute: typeof ExemplesApiDemoNamesServerRoute;
 }
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/_auth': {
-      id: '/_auth'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_app': {
-      id: '/_app'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof AppRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_admin': {
-      id: '/_admin'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof AdminRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_auth/signup': {
-      id: '/_auth/signup'
-      path: '/signup'
-      fullPath: '/signup'
-      preLoaderRoute: typeof AuthSignupRouteImport
-      parentRoute: typeof AuthRoute
-    }
-    '/_auth/signin': {
-      id: '/_auth/signin'
-      path: '/signin'
-      fullPath: '/signin'
-      preLoaderRoute: typeof AuthSigninRouteImport
-      parentRoute: typeof AuthRoute
-    }
-    '/_app/services': {
-      id: '/_app/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof AppServicesRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/dashboard': {
-      id: '/_app/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof AppDashboardRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/companies': {
-      id: '/_app/companies'
-      path: '/companies'
-      fullPath: '/companies'
-      preLoaderRoute: typeof AppCompaniesRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_admin/users': {
-      id: '/_admin/users'
-      path: '/users'
-      fullPath: '/users'
-      preLoaderRoute: typeof AdminUsersRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/(errors)/503': {
-      id: '/(errors)/503'
-      path: '/503'
-      fullPath: '/503'
-      preLoaderRoute: typeof errors503RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(errors)/500': {
-      id: '/(errors)/500'
-      path: '/500'
-      fullPath: '/500'
-      preLoaderRoute: typeof errors500RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(errors)/404': {
-      id: '/(errors)/404'
-      path: '/404'
-      fullPath: '/404'
-      preLoaderRoute: typeof errors404RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(errors)/403': {
-      id: '/(errors)/403'
-      path: '/403'
-      fullPath: '/403'
-      preLoaderRoute: typeof errors403RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(errors)/401': {
-      id: '/(errors)/401'
-      path: '/401'
-      fullPath: '/401'
-      preLoaderRoute: typeof errors401RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_app/settings': {
-      id: '/_app/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof AppSettingsRouteRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/tasks/': {
-      id: '/_app/tasks/'
-      path: '/tasks'
-      fullPath: '/tasks'
-      preLoaderRoute: typeof AppTasksIndexRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/settings/': {
-      id: '/_app/settings/'
-      path: '/'
-      fullPath: '/settings/'
-      preLoaderRoute: typeof AppSettingsIndexRouteImport
-      parentRoute: typeof AppSettingsRouteRoute
-    }
-    '/_app/help-center/': {
-      id: '/_app/help-center/'
-      path: '/help-center'
-      fullPath: '/help-center'
-      preLoaderRoute: typeof AppHelpCenterIndexRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/chats/': {
-      id: '/_app/chats/'
-      path: '/chats'
-      fullPath: '/chats'
-      preLoaderRoute: typeof AppChatsIndexRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/apps/': {
-      id: '/_app/apps/'
-      path: '/apps'
-      fullPath: '/apps'
-      preLoaderRoute: typeof AppAppsIndexRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/exemples/demo/store': {
-      id: '/exemples/demo/store'
-      path: '/exemples/demo/store'
-      fullPath: '/exemples/demo/store'
-      preLoaderRoute: typeof ExemplesDemoStoreRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_app/settings/notifications': {
-      id: '/_app/settings/notifications'
-      path: '/notifications'
-      fullPath: '/settings/notifications'
-      preLoaderRoute: typeof AppSettingsNotificationsRouteImport
-      parentRoute: typeof AppSettingsRouteRoute
-    }
-    '/_app/settings/display': {
-      id: '/_app/settings/display'
-      path: '/display'
-      fullPath: '/settings/display'
-      preLoaderRoute: typeof AppSettingsDisplayRouteImport
-      parentRoute: typeof AppSettingsRouteRoute
-    }
-    '/_app/settings/appearance': {
-      id: '/_app/settings/appearance'
-      path: '/appearance'
-      fullPath: '/settings/appearance'
-      preLoaderRoute: typeof AppSettingsAppearanceRouteImport
-      parentRoute: typeof AppSettingsRouteRoute
-    }
-    '/_app/settings/account': {
-      id: '/_app/settings/account'
-      path: '/account'
-      fullPath: '/settings/account'
-      preLoaderRoute: typeof AppSettingsAccountRouteImport
-      parentRoute: typeof AppSettingsRouteRoute
-    }
-    '/_app/errors/$error': {
-      id: '/_app/errors/$error'
-      path: '/errors/$error'
-      fullPath: '/errors/$error'
-      preLoaderRoute: typeof AppErrorsErrorRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/exemples/demo/start/server-funcs': {
-      id: '/exemples/demo/start/server-funcs'
-      path: '/exemples/demo/start/server-funcs'
-      fullPath: '/exemples/demo/start/server-funcs'
-      preLoaderRoute: typeof ExemplesDemoStartServerFuncsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/exemples/demo/start/api-request': {
-      id: '/exemples/demo/start/api-request'
-      path: '/exemples/demo/start/api-request'
-      fullPath: '/exemples/demo/start/api-request'
-      preLoaderRoute: typeof ExemplesDemoStartApiRequestRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+    "/_auth": {
+      id: "/_auth";
+      path: "";
+      fullPath: "";
+      preLoaderRoute: typeof AuthRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/_app": {
+      id: "/_app";
+      path: "";
+      fullPath: "";
+      preLoaderRoute: typeof AppRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/_admin": {
+      id: "/_admin";
+      path: "";
+      fullPath: "";
+      preLoaderRoute: typeof AdminRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/_auth/signup": {
+      id: "/_auth/signup";
+      path: "/signup";
+      fullPath: "/signup";
+      preLoaderRoute: typeof AuthSignupRouteImport;
+      parentRoute: typeof AuthRoute;
+    };
+    "/_auth/signin": {
+      id: "/_auth/signin";
+      path: "/signin";
+      fullPath: "/signin";
+      preLoaderRoute: typeof AuthSigninRouteImport;
+      parentRoute: typeof AuthRoute;
+    };
+    "/_app/services": {
+      id: "/_app/services";
+      path: "/services";
+      fullPath: "/services";
+      preLoaderRoute: typeof AppServicesRouteImport;
+      parentRoute: typeof AppRoute;
+    };
+    "/_app/dashboard": {
+      id: "/_app/dashboard";
+      path: "/dashboard";
+      fullPath: "/dashboard";
+      preLoaderRoute: typeof AppDashboardRouteImport;
+      parentRoute: typeof AppRoute;
+    };
+    "/_app/companies": {
+      id: "/_app/companies";
+      path: "/companies";
+      fullPath: "/companies";
+      preLoaderRoute: typeof AppCompaniesRouteImport;
+      parentRoute: typeof AppRoute;
+    };
+    "/_admin/users": {
+      id: "/_admin/users";
+      path: "/users";
+      fullPath: "/users";
+      preLoaderRoute: typeof AdminUsersRouteImport;
+      parentRoute: typeof AdminRoute;
+    };
+    "/(errors)/503": {
+      id: "/(errors)/503";
+      path: "/503";
+      fullPath: "/503";
+      preLoaderRoute: typeof errors503RouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/(errors)/500": {
+      id: "/(errors)/500";
+      path: "/500";
+      fullPath: "/500";
+      preLoaderRoute: typeof errors500RouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/(errors)/404": {
+      id: "/(errors)/404";
+      path: "/404";
+      fullPath: "/404";
+      preLoaderRoute: typeof errors404RouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/(errors)/403": {
+      id: "/(errors)/403";
+      path: "/403";
+      fullPath: "/403";
+      preLoaderRoute: typeof errors403RouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/(errors)/401": {
+      id: "/(errors)/401";
+      path: "/401";
+      fullPath: "/401";
+      preLoaderRoute: typeof errors401RouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/_app/settings": {
+      id: "/_app/settings";
+      path: "/settings";
+      fullPath: "/settings";
+      preLoaderRoute: typeof AppSettingsRouteRouteImport;
+      parentRoute: typeof AppRoute;
+    };
+    "/_app/tasks/": {
+      id: "/_app/tasks/";
+      path: "/tasks";
+      fullPath: "/tasks";
+      preLoaderRoute: typeof AppTasksIndexRouteImport;
+      parentRoute: typeof AppRoute;
+    };
+    "/_app/settings/": {
+      id: "/_app/settings/";
+      path: "/";
+      fullPath: "/settings/";
+      preLoaderRoute: typeof AppSettingsIndexRouteImport;
+      parentRoute: typeof AppSettingsRouteRoute;
+    };
+    "/_app/help-center/": {
+      id: "/_app/help-center/";
+      path: "/help-center";
+      fullPath: "/help-center";
+      preLoaderRoute: typeof AppHelpCenterIndexRouteImport;
+      parentRoute: typeof AppRoute;
+    };
+    "/_app/chats/": {
+      id: "/_app/chats/";
+      path: "/chats";
+      fullPath: "/chats";
+      preLoaderRoute: typeof AppChatsIndexRouteImport;
+      parentRoute: typeof AppRoute;
+    };
+    "/_app/apps/": {
+      id: "/_app/apps/";
+      path: "/apps";
+      fullPath: "/apps";
+      preLoaderRoute: typeof AppAppsIndexRouteImport;
+      parentRoute: typeof AppRoute;
+    };
+    "/exemples/demo/store": {
+      id: "/exemples/demo/store";
+      path: "/exemples/demo/store";
+      fullPath: "/exemples/demo/store";
+      preLoaderRoute: typeof ExemplesDemoStoreRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/_app/settings/notifications": {
+      id: "/_app/settings/notifications";
+      path: "/notifications";
+      fullPath: "/settings/notifications";
+      preLoaderRoute: typeof AppSettingsNotificationsRouteImport;
+      parentRoute: typeof AppSettingsRouteRoute;
+    };
+    "/_app/settings/display": {
+      id: "/_app/settings/display";
+      path: "/display";
+      fullPath: "/settings/display";
+      preLoaderRoute: typeof AppSettingsDisplayRouteImport;
+      parentRoute: typeof AppSettingsRouteRoute;
+    };
+    "/_app/settings/appearance": {
+      id: "/_app/settings/appearance";
+      path: "/appearance";
+      fullPath: "/settings/appearance";
+      preLoaderRoute: typeof AppSettingsAppearanceRouteImport;
+      parentRoute: typeof AppSettingsRouteRoute;
+    };
+    "/_app/settings/account": {
+      id: "/_app/settings/account";
+      path: "/account";
+      fullPath: "/settings/account";
+      preLoaderRoute: typeof AppSettingsAccountRouteImport;
+      parentRoute: typeof AppSettingsRouteRoute;
+    };
+    "/_app/errors/$error": {
+      id: "/_app/errors/$error";
+      path: "/errors/$error";
+      fullPath: "/errors/$error";
+      preLoaderRoute: typeof AppErrorsErrorRouteImport;
+      parentRoute: typeof AppRoute;
+    };
+    "/exemples/demo/start/server-funcs": {
+      id: "/exemples/demo/start/server-funcs";
+      path: "/exemples/demo/start/server-funcs";
+      fullPath: "/exemples/demo/start/server-funcs";
+      preLoaderRoute: typeof ExemplesDemoStartServerFuncsRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/exemples/demo/start/api-request": {
+      id: "/exemples/demo/start/api-request";
+      path: "/exemples/demo/start/api-request";
+      fullPath: "/exemples/demo/start/api-request";
+      preLoaderRoute: typeof ExemplesDemoStartApiRequestRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
   }
 }
-declare module '@tanstack/react-start/server' {
+declare module "@tanstack/react-start/server" {
   interface ServerFileRoutesByPath {
-    '/exemples/api/demo-names': {
-      id: '/exemples/api/demo-names'
-      path: '/exemples/api/demo-names'
-      fullPath: '/exemples/api/demo-names'
-      preLoaderRoute: typeof ExemplesApiDemoNamesServerRouteImport
-      parentRoute: typeof rootServerRouteImport
-    }
+    "/exemples/api/demo-names": {
+      id: "/exemples/api/demo-names";
+      path: "/exemples/api/demo-names";
+      fullPath: "/exemples/api/demo-names";
+      preLoaderRoute: typeof ExemplesApiDemoNamesServerRouteImport;
+      parentRoute: typeof rootServerRouteImport;
+    };
   }
 }
 
 interface AdminRouteChildren {
-  AdminUsersRoute: typeof AdminUsersRoute
+  AdminUsersRoute: typeof AdminUsersRoute;
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminUsersRoute: AdminUsersRoute,
-}
+};
 
-const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren);
 
 interface AppSettingsRouteRouteChildren {
-  AppSettingsAccountRoute: typeof AppSettingsAccountRoute
-  AppSettingsAppearanceRoute: typeof AppSettingsAppearanceRoute
-  AppSettingsDisplayRoute: typeof AppSettingsDisplayRoute
-  AppSettingsNotificationsRoute: typeof AppSettingsNotificationsRoute
-  AppSettingsIndexRoute: typeof AppSettingsIndexRoute
+  AppSettingsAccountRoute: typeof AppSettingsAccountRoute;
+  AppSettingsAppearanceRoute: typeof AppSettingsAppearanceRoute;
+  AppSettingsDisplayRoute: typeof AppSettingsDisplayRoute;
+  AppSettingsNotificationsRoute: typeof AppSettingsNotificationsRoute;
+  AppSettingsIndexRoute: typeof AppSettingsIndexRoute;
 }
 
 const AppSettingsRouteRouteChildren: AppSettingsRouteRouteChildren = {
@@ -651,21 +651,21 @@ const AppSettingsRouteRouteChildren: AppSettingsRouteRouteChildren = {
   AppSettingsDisplayRoute: AppSettingsDisplayRoute,
   AppSettingsNotificationsRoute: AppSettingsNotificationsRoute,
   AppSettingsIndexRoute: AppSettingsIndexRoute,
-}
+};
 
 const AppSettingsRouteRouteWithChildren =
-  AppSettingsRouteRoute._addFileChildren(AppSettingsRouteRouteChildren)
+  AppSettingsRouteRoute._addFileChildren(AppSettingsRouteRouteChildren);
 
 interface AppRouteChildren {
-  AppSettingsRouteRoute: typeof AppSettingsRouteRouteWithChildren
-  AppCompaniesRoute: typeof AppCompaniesRoute
-  AppDashboardRoute: typeof AppDashboardRoute
-  AppServicesRoute: typeof AppServicesRoute
-  AppErrorsErrorRoute: typeof AppErrorsErrorRoute
-  AppAppsIndexRoute: typeof AppAppsIndexRoute
-  AppChatsIndexRoute: typeof AppChatsIndexRoute
-  AppHelpCenterIndexRoute: typeof AppHelpCenterIndexRoute
-  AppTasksIndexRoute: typeof AppTasksIndexRoute
+  AppSettingsRouteRoute: typeof AppSettingsRouteRouteWithChildren;
+  AppCompaniesRoute: typeof AppCompaniesRoute;
+  AppDashboardRoute: typeof AppDashboardRoute;
+  AppServicesRoute: typeof AppServicesRoute;
+  AppErrorsErrorRoute: typeof AppErrorsErrorRoute;
+  AppAppsIndexRoute: typeof AppAppsIndexRoute;
+  AppChatsIndexRoute: typeof AppChatsIndexRoute;
+  AppHelpCenterIndexRoute: typeof AppHelpCenterIndexRoute;
+  AppTasksIndexRoute: typeof AppTasksIndexRoute;
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -678,21 +678,21 @@ const AppRouteChildren: AppRouteChildren = {
   AppChatsIndexRoute: AppChatsIndexRoute,
   AppHelpCenterIndexRoute: AppHelpCenterIndexRoute,
   AppTasksIndexRoute: AppTasksIndexRoute,
-}
+};
 
-const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren);
 
 interface AuthRouteChildren {
-  AuthSigninRoute: typeof AuthSigninRoute
-  AuthSignupRoute: typeof AuthSignupRoute
+  AuthSigninRoute: typeof AuthSigninRoute;
+  AuthSignupRoute: typeof AuthSignupRoute;
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
   AuthSigninRoute: AuthSigninRoute,
   AuthSignupRoute: AuthSignupRoute,
-}
+};
 
-const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren);
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -707,13 +707,13 @@ const rootRouteChildren: RootRouteChildren = {
   ExemplesDemoStoreRoute: ExemplesDemoStoreRoute,
   ExemplesDemoStartApiRequestRoute: ExemplesDemoStartApiRequestRoute,
   ExemplesDemoStartServerFuncsRoute: ExemplesDemoStartServerFuncsRoute,
-}
+};
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 const rootServerRouteChildren: RootServerRouteChildren = {
   ExemplesApiDemoNamesServerRoute: ExemplesApiDemoNamesServerRoute,
-}
+};
 export const serverRouteTree = rootServerRouteImport
   ._addFileChildren(rootServerRouteChildren)
-  ._addFileTypes<FileServerRouteTypes>()
+  ._addFileTypes<FileServerRouteTypes>();

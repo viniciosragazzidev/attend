@@ -3,7 +3,7 @@
 import { AuthenticatedLayout } from "@/components/layout/authenticated-layout";
 import LoadingPage from "@/components/loading-page";
 import { AuthContext } from "@/lib/auth-context";
-import { useUser } from "@/lib/user-context";
+import { useUserCompany } from "@/lib/use-user-company";
 
 import { createFileRoute, Outlet, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
@@ -26,7 +26,8 @@ export const Route = createFileRoute("/_app")({
 
 function DashboardLayout() {
   const { session: serverSession, serverLoaded } = Route.useLoaderData();
-  const { user, loading, error, refreshUser } = useUser();
+
+  const { refreshAll, user, loading, error } = useUserCompany();
   const navigate = useNavigate();
   const hasRedirected = useRef(false);
 
@@ -34,9 +35,9 @@ function DashboardLayout() {
   useEffect(() => {
     if (serverLoaded && serverSession?.user && !user) {
       // Se temos dados do servidor mas não no contexto, atualiza o contexto
-      refreshUser();
+      refreshAll();
     }
-  }, [serverLoaded, serverSession, user, refreshUser]);
+  }, [serverLoaded, serverSession, user, refreshAll]);
 
   // Redirecionamento automático se não houver usuário (apenas uma vez)
   useEffect(() => {

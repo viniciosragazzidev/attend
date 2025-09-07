@@ -117,3 +117,27 @@ export async function createCompany(
 
   return response.json();
 }
+
+export async function fetchAllCompanies(): Promise<{
+  success: boolean;
+  data?: any[];
+  error?: string;
+}> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/admin/companies`, {
+      credentials: "include", // Para incluir cookies de autenticação
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Erro ao buscar empresas:", error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Erro desconhecido",
+    };
+  }
+}
